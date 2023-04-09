@@ -2,17 +2,21 @@ import Vibrant from 'node-vibrant';
 
 const video = document.getElementById('video');
 const colorPalette = document.getElementById('color-palette');
+const errorMsg = document.getElementById('error-msg');
 
-navigator.mediaDevices.getUserMedia({ video: true })
-  .then((stream) => {
+async function initCamera() {
+  try {
+    const constraints = { video: true };
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = stream;
     video.addEventListener('loadeddata', () => {
       update();
     });
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error('Error accessing camera:', err);
-  });
+    errorMsg.textContent = `Ошибка доступа к камере: ${err.message}`;
+  }
+}
 
 async function update() {
   const tempCanvas = document.createElement('canvas');
@@ -39,3 +43,5 @@ async function update() {
 
   requestAnimationFrame(update);
 }
+
+initCamera();
