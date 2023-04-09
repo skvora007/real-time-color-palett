@@ -1,4 +1,4 @@
-import Vibrant from 'vibrant';
+import Vibrant from 'vibrant/lib/browser';
 
 const video = document.getElementById('video');
 const colorPalette = document.getElementById('color-palette');
