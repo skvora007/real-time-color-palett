@@ -1,4 +1,4 @@
-import Vibrant from 'node-vibrant';
+import Vibrant from 'vibrant';
 
 const video = document.getElementById('video');
 const colorPalette = document.getElementById('color-palette');
